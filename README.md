@@ -5,4 +5,4 @@ Login system created with customtkinter.
 
 Clone this repository and run: `python3 main.py`
 
-#### The test key is: OjqpEuQubFdjchUzttmSOfFTK
+#### The test key is: OjqpEuQubFdjchUzttmSOfFTk
