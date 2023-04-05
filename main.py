@@ -3,9 +3,13 @@ import json
 import tkinter as tk
 import time
 
+print("###########################\nTHIS ZONE IS FOR DEBBUGGING\n###########################")
+
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+
+        # Widgets
 
         self.label = customtkinter.CTkLabel(self, font=("Arial", 32), text="Login System")
         self.label.grid(padx=235, pady=(50, 30))
@@ -22,6 +26,9 @@ class MyFrame(customtkinter.CTkFrame):
     def login(self):
         self.correct = "Correct! Welcome."
         self.incorrect = "Incorrect key."
+
+        # Checker
+
         print(self.entry.get())
         with open("data.json", "r") as r:
             data = json.load(r)
@@ -36,7 +43,7 @@ class MyFrame(customtkinter.CTkFrame):
                     print("No given key.")
 
                 else:
-                    self.keyCheckerText.configure(text="Incorrect key.")
+                    self.keyCheckerText.configure(text="Incorrect key. Make sure you don't put spaces.")
                     print(self.incorrect)
                     self.keyInserBox.delete(0, tk.END)
 
@@ -64,6 +71,9 @@ class App(customtkinter.CTk):
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
 
 
-
-app = App()
-app.mainloop()
+if __name__ == "__main__":
+    try:
+        app = App()
+        app.mainloop()
+    except KeyboardInterrupt:
+        print("Canceled by user.")
