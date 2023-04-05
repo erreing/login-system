@@ -6,7 +6,9 @@ import time
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-
+        
+        # Widgets
+        
         self.label = customtkinter.CTkLabel(self, font=("Arial", 32), text="Login System")
         self.label.grid(padx=235, pady=(50, 30))
 
@@ -22,20 +24,20 @@ class MyFrame(customtkinter.CTkFrame):
     def login(self):
         self.correct = "Correct! Welcome."
         self.incorrect = "Incorrect key."
-        print(self.entry.get())
-        with open("data.json", "r") as r:
+        print(self.entry.get()) # reading the input
+        with open("data.json", "r") as r: # reading the key json file
             data = json.load(r)
-            for item in data:
-                if item['key'] == self.entry.get():
+            for item in data: # checker
+                if item['key'] == self.entry.get(): # if valid
                     self.keyCheckerText.configure(text="Correct! Welcome.")
                     print(self.correct)
                     self.keyInserBox.delete(0, tk.END)
 
-                elif self.entry.get() == "":
+                elif self.entry.get() == "": # if no given key
                     self.keyCheckerText.configure(text="No given key.")
                     print("No given key.")
 
-                else:
+                else: # if invalid
                     self.keyCheckerText.configure(text="Incorrect key.")
                     print(self.incorrect)
                     self.keyInserBox.delete(0, tk.END)
