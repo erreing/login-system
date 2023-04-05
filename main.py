@@ -27,7 +27,7 @@ class MyFrame(customtkinter.CTkFrame):
         self.correct = "Correct! Welcome."
         self.incorrect = "Incorrect key."
 
-        # Checker.
+        # Checker
 
         print(self.entry.get())
         with open("data.json", "r") as r:
