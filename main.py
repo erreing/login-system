@@ -1,32 +1,29 @@
-import customtkinter
+import customtkinter as ctk
 import json
 import tkinter as tk
-import time
+from time import sleep
 
 print("###########################\nTHIS ZONE IS FOR DEBBUGGING\n###########################")
 
-class MyFrame(customtkinter.CTkFrame):
+class MyFrame(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
         # Widgets
 
-        self.label = customtkinter.CTkLabel(self, font=("Arial", 32), text="Login System")
+        self.label = ctk.CTkLabel(self, font=("Arial", 32), text="Login System")
         self.label.grid(padx=235, pady=(50, 30))
 
-        self.keyCheckerText = self.label = customtkinter.CTkLabel(self, text="", font=("Arial", 20))
+        self.keyCheckerText = self.label = ctk.CTkLabel(self, text="", font=("Arial", 20))
         self.label.grid(padx=0, pady=(10, 20))
 
-        self.keyInserBox = self.entry = customtkinter.CTkEntry(self, placeholder_text="Key here", width=190)
+        self.keyInserBox = self.entry = ctk.CTkEntry(self, placeholder_text="Key here", width=190)
         self.entry.grid(padx=0, pady=0)
 
-        self.button = customtkinter.CTkButton(master=self, command=self.login, text="Login", width=80)
+        self.button = ctk.CTkButton(master=self, command=self.login, text="Login", width=80)
         self.button.grid(padx=0, pady=50)
 
     def login(self):
-        self.correct = "Correct! Welcome."
-        self.incorrect = "Incorrect key."
-
         # Checker
 
         print(self.entry.get())
@@ -35,8 +32,9 @@ class MyFrame(customtkinter.CTkFrame):
             for item in data: # checker
                 if item['key'] == self.entry.get(): # if valid
                     self.keyCheckerText.configure(text="Correct! Welcome.")
-                    print(self.correct)
+                    print("Correct! Welcome.")
                     self.keyInserBox.delete(0, tk.END)
+                    self.after(1000, self.quit)
 
                 elif self.entry.get() == "": # if no given key
                     self.keyCheckerText.configure(text="No given key.")
@@ -44,17 +42,17 @@ class MyFrame(customtkinter.CTkFrame):
 
                 else:
                     self.keyCheckerText.configure(text="Incorrect key. Make sure you don't put spaces.")
-                    print(self.incorrect)
+                    print("Incorrect key.")
                     self.keyInserBox.delete(0, tk.END)
 
-class App(customtkinter.CTk):
+class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
         # Appearance
 
-        customtkinter.set_appearance_mode("dark")
-        customtkinter.set_default_color_theme("dark-blue")
+        ctk.set_appearance_mode("dark")
+        ctk.set_default_color_theme("dark-blue")
 
         # Window {geometry, center calc}
 
